@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Soomaaliya - Dhaqan, Dalxiis, iyo Qadiimiga. Bog qurux badan oo ku saabsan dhulka Soomaaliyeed.">
+    <title>Somaliland | Qurux iyo Dhaqan</title>
+    <!-- Google Fonts + Font Awesome 6 (free) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ---------- CSS RESET & GLOBAL ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefcf5;
+            color: #1e2a3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* Container utility */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title h2 {
+            background: linear-gradient(135deg, #1e5f8e, #2e86ab);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 2.2rem;
+        }
+        .section-title p {
+            color: #4a627a;
+            max-width: 600px;
+            margin: 0.5rem auto 0;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: #2a7f6e;
+            color: white;
+            font-weight: 600;
+            padding: 0.85rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .btn:hover {
+            background: #1e5f50;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        .btn-outline:hover {
+            background: white;
+            color: #2a7f6e;
+            border-color: white;
+        }
+
+        /* ----- NAVBAR ----- */
+        .navbar {
+            background: rgba(255, 255, 245, 0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #2a7f6e;
+            letter-spacing: -0.5px;
+        }
+        .logo i {
+            color: #d4af37;
+            margin-right: 6px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1e2a3e;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover {
+            color: #2a7f6e;
+        }
+        /* Mobile menu simple (flex wrap) */
+        @media (max-width: 720px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .nav-links {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* ----- HERO SECTION (Somali vibe) ----- */
+        .hero {
+            background: linear-gradient(107deg, rgba(0,0,0,0.5), rgba(0,30,40,0.6)), url('https://images.unsplash.com/photo-1581696188492-0816b23edcd2?w=1600&q=80&auto=format');
+            background-size: cover;
+            background-position: center 30%;
+            padding: 7rem 0;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        .hero .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.4rem; }
+            .hero { padding: 4rem 0; }
+        }
+
+        /* ----- FEATURES CARDS (Waxyaabaha) ----- */
+        .features {
+            padding: 5rem 0;
+            background: #ffffff;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.25s ease;
+            box-shadow: 0 18px 30px -10px rgba(0,0,0,0.05);
+            border: 1px solid #f0e6d8;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 28px 38px -12px rgba(0,0,0,0.12);
+            border-color: #d4c3aa;
+        }
+        .card i {
+            font-size: 2.8rem;
+            background: linear-gradient(145deg, #2e86ab, #1e5f8e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+        .card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 0.75rem;
+            color: #1f3e48;
+        }
+        .card p {
+            color: #445b6e;
+            font-size: 0.95rem;
+        }
+
+        /* ----- DESTINATIONS SECTION (Goobaha Dalxiiska) ----- */
+        .destinations {
+            padding: 5rem 0;
+            background: #f8f5ef;
+        }
+        .dest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.2rem;
+        }
+        .dest-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.25s;
+            box-shadow: 0 12px 22px rgba(0,0,0,0.05);
+        }
+        .dest-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 24px 36px -12px rgba(0,0,0,0.15);
+        }
+        .dest-img {
+            height: 210px;
+            overflow: hidden;
+        }
+        .dest-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+        .dest-card:hover .dest-img img {
+            transform: scale(1.05);
+        }
+        .dest-info {
+            padding: 1.5rem;
+        }
+        .dest-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #1f5e6b;
+        }
+        .dest-info p {
+            color: #476b7c;
+            margin-bottom: 1rem;
+        }
+        .dest-info .place-link {
+            font-weight: 600;
+            color: #2a7f6e;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ----- MAQAAL (Testimonial / Proverb) ----- */
+        .proverb-section {
+            background: linear-gradient(120deg, #e9f2ee, #ffffff);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .proverb-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffffd9;
+            border-radius: 48px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            border-left: 6px solid #d4af37;
+        }
+        .proverb-text {
+            font-size: 1.6rem;
+            font-style: italic;
+            font-weight: 500;
+            color: #1c4e5a;
+            line-height: 1.4;
+        }
+        .proverb-author {
+            margin-top: 1rem;
+            font-weight: 700;
+            color: #b77c2e;
+        }
+
+        /* ----- FOOTER ----- */
+        footer {
+            background: #0f2c2f;
+            color: #dee2e6;
+            padding: 2.5rem 0 1.5rem;
+        }
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        .footer-logo span {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #e2c28b;
+        }
+        .social-icons a {
+            color: #cbd5e1;
+            font-size: 1.5rem;
+            margin-left: 1.2rem;
+            transition: 0.2s;
+            display: inline-block;
+        }
+        .social-icons a:hover {
+            color: #f3b43c;
+            transform: translateY(-3px);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            font-size: 0.85rem;
+            border-top: 1px solid #2c4e55;
+            margin-top: 1.5rem;
+        }
+        @media (max-width: 680px) {
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .social-icons a {
+                margin: 0 0.8rem;
+            }
+        }
+
+        /* simple animations */
+        .fade-up {
+            animation: fadeUp 0.6s ease-out;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar: Somaliland navigation -->
+<nav class="navbar">
+    <div class="container nav-container">
+        <div class="logo">
+            <i class="fas fa-star-of-life"></i> Somaliland
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Warbixin</a></li>
+            <li><a href="#">Dalxiis</a></li>
+            <li><a href="#">contant</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero section: Somaliland welcome message -->
+<section class="hero">
+    <div class="container hero-content">
+        <h1>Kuso dhawoow dalkaga hooyo ee somaliland</h1>
+        <p>Bookhashada dhulalka qadiimiga ah, xeebaha quruxda badan, iyo meelo kale badan . so hel khibrad ( nin aan dhul marin dhaayo maleha).</p>
+        <div class="btn-group">
+            <a href="#" class="btn">melaha Dalxiiska <i class="fas fa-arrow-right"></i></a>
+            <a href="#" class="btn btn-outline">Dhaqanka & Hiddaha</a>
+        </div>
+    </div>
+</section>
+
+<!-- Features: 3 pillars of Somali culture/tourism (Somali text only) -->
+<section class="features">
+    <div class="container">
+        <div class="section-title">
+            <h2>Waxyaabaha aanu bixino</h2>
+            <p>Qaybaha qaniga ku ah dhaqanka, cuntada, iyo dalxiiska meelo qurux badan</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card">
+                <i class="fas fa-umbrella-beach"></i>
+                <h3>Dalxiis & Xeebo</h3>
+                <p>Xeebaha casriga ah ee batalaale ilaa xeebaha maydh, buura quruxda badan sida Gacan libaax,Daalo iyo buurta sheekh .</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-music"></i>
+                <h3>Hidaha & Fanka</h3>
+                <p>Gabayga, heesaha dhaqanka, iyo dhaqanka soo jireenka ah ee dunida caanka ku ah Soomaali weyn.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-utensils"></i>
+                <h3>Cunnada Dhaqanka</h3>
+                <p>Bariis iskukaris, sambuus, baasto, iyo macmacaanka 'halwa' – dhadhami xaqiiqada somaliland</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Destinations - Goobaha Dalxiiska (with real Somali places) -->
+<section class="destinations">
+    <div class="container">
+        <div class="section-title">
+            <h2>Goobaha Dalxiiska Somaliland</h2>
+            <p>Bog aad ku arki karto qaar ka mid ah meelaha ugu quruxda badan</p>
+        </div>
+        <div class="dest-grid">
+            <!-- Destination card 1: Liido Beach -->
+            <div class="dest-card">
+                <div class="dest-img">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop" alt="Liido Beach, Muqdisho" loading="lazy">
+                </div>
+                <div class="dest-info">
+                    <h3>Xeebta berbera</h3>
+                    <p>Xeebta caanka ah ee berbera, hawo kulan iyo biyo qurux badan, waxay ku fiican tahay nasasho iyo ciyaaraha badda.</p>
+                    <a href="#" class="place-link">Warbixin dheeri <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+            <!-- Destination 2: Laas Geel (rock art) -->
+            <div class="dest-card">
+                <div class="dest-img">
+                    <img src="https://images.unsplash.com/photo-1554000773-5c3e5ac5ebf6?w=600&h=400&fit=crop" alt="Laas Geel cave paintings" loading="lazy">
+                </div>
+                <div class="dest-info">
+                    <h3>Laas Geel</h3>
+                    <p>Sawirrada dhagaxa ah ee ugu qadiimsan Afrika, oo ku yaal Hargeysa. Farshaxan qarannimo oo taariikhi ah.</p>
+                    <a href="#" class="place-link">Daawo taariikhda <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+            <!-- Destination 3: Berbera coastline -->
+            <div class="dest-card">
+                <div class="dest-img">
+                    <img src="https://images.unsplash.com/photo-1520454974749-611b7248ffdb?w=600&h=400&fit=crop" alt="Berbera Old Port" loading="lazy">
+                </div>
+                <div class="dest-info">
+                    <h3>Berbera</h3>
+                    <p>Dekedda taariikhiga ah, xeeba qurux badan iyo jasiiradaha ku hareeraysan, oo qurux dabiici ah leh.</p>
+                    <a href="#" class="place-link">Sahami <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Proverb / cultural quote section (Somali wisdom) -->
+<section class="proverb-section">
+    <div class="container">
+        <div class="proverb-box">
+            <div class="proverb-text">
+                <i class="fas fa-quote-left" style="color:#d4af37; margin-right: 8px;"></i> 
+                “Nin aan dhul marin dhaayo ma laha.” 
+            </div>
+            <div class="proverb-author">— Maahmaah Soomaaliyeed</div>
+            <p style="margin-top: 1.2rem; font-size:0.9rem;">Somaliland : Dhulka nabada quruxda iyo dalxiiska</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer: all Somali references and social -->
+<footer>
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <span><i class="fas fa-map-marked-alt"></i> Somaliland Heritage</span>
+                <p style="margin-top: 8px; font-size: 0.85rem;">Dhaqan, Dalxiis & Sooyaal</p>
+            </div>
+            <div class="footer-contact">
+                <p><i class="fas fa-envelope"></i> soodhawoow@somalioland.so</p>
+                <p><i class="fas fa-phone-alt"></i> +252 63 234 5678</p>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Somaliland – Dhaxalka iyo Quruxda | Waxaa loo sameeyay si ay u muujiso dhaqanka Somaliland
+        </div>
+    </div>
+</footer>
+
+<!-- Small fade-up effect using Intersection Observer (simple, yet adds elegance) -->
+<script>
+    // English comment: add subtle fade-up animation when elements appear in viewport
+    const fadeElements = document.querySelectorAll('.card, .dest-card, .proverb-box');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-up');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    fadeElements.forEach(el => observer.observe(el));
+    // Additional: ensure navbar smooth backdrop with scroll
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 20) {
+            navbar.style.boxShadow = '0 8px 25px rgba(0,0,0,0.08)';
+        } else {
+            navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.03)';
+        }
+    });
+</script>
+</body>
+</html>
